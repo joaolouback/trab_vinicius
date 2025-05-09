@@ -6,5 +6,6 @@ import { Component } from "@angular/core";
     templateUrl: './signin.component.html'
 })
 export class SigninComponent {
-    
+myForm: any;
+
 }
