@@ -1,7 +1,10 @@
 import {Injectable} from "@angular/core";
 import { Message } from "./message.model";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
+  
 export class MessageService {
     private messageSService: Message[] = [];
 
