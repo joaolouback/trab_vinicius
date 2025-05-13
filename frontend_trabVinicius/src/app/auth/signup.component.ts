@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { first } from "rxjs";
+
 
 @Component({
     selector: 'app-signup',
@@ -18,15 +18,15 @@ export class SignupComponent implements OnInit{
 
     ngOnInit(){
         this.myForm = new FormGroup({
-            firstName: new FormControl(null, Validators.required),
-            lastName: new FormControl(null, [
+            firstNameTS: new FormControl(null, Validators.required),
+            lastNameTS: new FormControl(null, [
                 Validators.required,
                 Validators.minLength(4), Validators.maxLength(16)
             ]),
             emailTS: new FormControl(null, [
                 Validators.required,
-                Validators.pattern("/^[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+\.[a-zA-Z0-9]\-\_\.]+")
-            ]),
+                Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
+              ]),
             passwordTS: new FormControl(null, Validators.required)
         })
     }
