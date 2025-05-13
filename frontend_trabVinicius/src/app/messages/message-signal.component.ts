@@ -1,7 +1,8 @@
 import { FormsModule } from '@angular/forms';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { Message } from './message.model';
 import { CommonModule } from '@angular/common';
+import { MessageService } from './message.services';
 
 @Component({
   selector: 'app-message-signal',
@@ -11,12 +12,18 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponentSignal {
-  @Input() messageVarClasse: any;
+  messageVarClasse = input<Message>(new Message("","","",""));
 
   @Output() outputMessage = new EventEmitter<string>();
 
+  constructor(private messageServiceObj: MessageService){ }
+
   onEdit() {
     this.outputMessage.emit("Texto retornado com Signal: venho de message para o app");
+  }
+
+  onDelete() {
+    this.messageServiceObj.deleteMessage(this.messageVarClasse());
   }
 
   color = 'yellow';

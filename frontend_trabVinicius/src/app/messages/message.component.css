@@ -14,6 +14,16 @@
     font-size: 14px;
     padding: 20px 15px 30px;
   }
+  .config{
+    float: right;
+  }
+
+  .config a{
+    margin-right: 10px;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 
   .author{
     float: left;

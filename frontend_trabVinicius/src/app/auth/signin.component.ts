@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Form, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { AbstractControl,FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 
 @Component({
     selector: 'app-signin',
@@ -8,11 +8,11 @@ import { Form, FormGroup, ReactiveFormsModule } from "@angular/forms";
     templateUrl: './signin.component.html'
 })
 export class SigninComponent implements OnInit {
-    myForm! : FormGroup;
+    myFormIn! : FormGroup;
     constructor(private fb: FormBuilder) { }
 
     ngOnInit() {
-        this.myForm = this.fb.group({
+        this.myFormIn = this.fb.group({
             emailTS:[
                 null,
                 Validators.compose([
@@ -25,17 +25,23 @@ export class SigninComponent implements OnInit {
                 Validators.compose([
                     Validators.required,
                     Validators.minLength(4),
-                    tjis.minusculoFValidartor
-                ]),
+                    this.minusculoFValidator
+                ])
             ]
             
         });
     }
 
-    minusculoFVali    
+    minusculoFValidator(control: AbstractControl) {
+        const pass = control.value as string;
+        if ( (pass !== pass?.toLowerCase()) && (pass !== null) ) {
+            return { minusculoF: true };
+        }
+        return null;
+    }
     onSubmit() {
-        console.log(this.myForm);
-        this.myForm.reset();
+        console.log(this.myFormIn);
+        this.myFormIn.reset();
     }
 }
 
